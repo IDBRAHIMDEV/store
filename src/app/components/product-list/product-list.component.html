@@ -1,3 +1,42 @@
-<p>
-  product-list works!
-</p>
+<div class="row my-3">
+  <div class="col-md-6">
+    <h1>List of Products</h1>
+  </div>
+  <div class="col-md-6 text-right">
+    <a routerLink="" class="btn btn-success btn-sm">
+      <i class="fa fa-plus"></i>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td scope="row">
+            <h4>{{ product.title | uppercase }}</h4>
+            <em>{{ product?.description }}</em>
+          </td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ product.stock | number }}</td>
+          <td class="text-right">
+            <button class="btn btn-warning btn-sm mr-1"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-dark btn-sm"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+       
+      </tbody>
+    </table>
+
+  </div>
+</div>
