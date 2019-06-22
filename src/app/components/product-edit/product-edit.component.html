@@ -1,3 +1,62 @@
-<p>
-  product-edit works!
-</p>
+<div class="row my-3">
+    <div class="col-md-6">
+      <h1>Edit Product</h1>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/products" class="btn btn-default btn-sm">
+        <i class="fa fa-arrow-left"></i> Back to list
+      </a>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+
+    <form #form="ngForm">
+
+    <div class="form-group">
+      <label for="Title">Title</label>
+      <input required minlength="3" name="title" maxlength="10" pattern="[a-zA-Z0-9 ]*" #myTitle="ngModel" [(ngModel)]="product.title" id="Title" type="text" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="myTitle.invalid && myTitle.touched"
+      >
+        <div *ngIf="myTitle.errors.required"> This field is Required !!</div>
+        <div *ngIf="myTitle.errors.minlength">This field should be more than 3 caracters !</div>
+        <div *ngIf="myTitle.errors.pattern">This field is not respect the pattern!</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Description">Description</label>
+      <textarea required minlength="3" name="description"  #myDescription="ngModel" [(ngModel)]="product.description" id="Description" class="form-control" rows="4"></textarea>
+      <div class="alert alert-danger"
+      *ngIf="myDescription.invalid && myDescription.touched"
+    >
+      <div *ngIf="myDescription.errors.required"> This field is Required !!</div>
+      <div *ngIf="myDescription.errors.minlength">This field should be more than 3 caracters !</div>
+    </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="Price">Price</label>
+      <input [(ngModel)]="product.price" name="price" id="Price" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="Stock">Stock</label>
+      <input [(ngModel)]="product.stock" name="stock" id="Stock" type="text" class="form-control">
+    </div>
+
+    <div class="form-check">
+      <label for="active" class="form-check-label">
+        <input [(ngModel)]="product.active" name="active" type="checkbox" class="form-check-input" id="active" checked>
+        Active
+      </label>
+    </div>
+
+    <button (click)="onSubmit(form)" [disabled]="form.invalid" class="btn btn-success btn-block">
+      <i class="fa fa-send">Update product</i>
+    </button>
+  </form>
+  </div>
+</div>  

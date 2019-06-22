@@ -22,4 +22,11 @@ export class ProductListComponent implements OnInit {
     })
   }
 
+  deleteProduct(id) {
+    this.productService.delete(id)
+                       .then(res => {
+                         
+                       })
+  }
+
 }

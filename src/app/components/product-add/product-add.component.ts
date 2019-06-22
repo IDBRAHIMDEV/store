@@ -1,3 +1,4 @@
+import { Product } from './../../models/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProductAddComponent implements OnInit {
 
-  product = {
+  product: Product = {
     title: '',
     description: '',
     price: 0,
