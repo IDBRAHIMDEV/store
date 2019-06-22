@@ -17,4 +17,8 @@ export class ProductService {
      return this.productsCollection.valueChanges();
    }
 
+   create(product) {
+      return this.productsCollection.add(product);
+   }
+
 }

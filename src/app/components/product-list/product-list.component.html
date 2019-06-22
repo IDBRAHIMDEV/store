@@ -3,7 +3,7 @@
     <h1>List of Products</h1>
   </div>
   <div class="col-md-6 text-right">
-    <a routerLink="" class="btn btn-success btn-sm">
+    <a routerLink="/products/add" class="btn btn-success btn-sm">
       <i class="fa fa-plus"></i>
     </a>
   </div>
@@ -31,7 +31,7 @@
           <td>{{ product.stock | number }}</td>
           <td class="text-right">
             <button class="btn btn-warning btn-sm mr-1"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-dark btn-sm"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
        
