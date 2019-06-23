@@ -14,7 +14,9 @@
 
 <div class="row">
   <div class="col-md-12">
-
+    
+    <input (keyup.enter)="searchProducts()" [(ngModel)]="search" type="text" placeholder="Search..." class="my-2 form-control">
+  
     <table class="table">
       <thead>
         <tr>
@@ -25,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of resultProducts">
           <td scope="row">
 
             <i (click)="toggleActiveProduct(product)" class="fa fa-power-off" [class.active-product]="!product.active"></i>

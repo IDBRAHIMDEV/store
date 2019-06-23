@@ -8,8 +8,11 @@ import { ProductService } from './../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  
+  search = '';
   somme = 0;
   products: any[] = []
+  resultProducts: any[] = []
   constructor(
        private productService: ProductService,
        private flashMessage: FlashMessagesService
@@ -22,7 +25,7 @@ export class ProductListComponent implements OnInit {
   getAllProducts() {
     this.productService.getAll().subscribe((res: any[]) => {
         console.log(res)
-        this.products = res;
+       this.resultProducts = this.products = res;
         this.somePrices();
     })
   }
@@ -64,6 +67,20 @@ export class ProductListComponent implements OnInit {
     this.somme = this.products.reduce((total, product) => {
       return total + (parseFloat(product.price) * parseFloat(product.stock))
     }, 0);
+  }
+
+
+  searchProducts() {
+    if(this.search) {
+       this.resultProducts = this.products.filter(product => {
+      return (product.title.toLowerCase().includes(this.search.toLowerCase()) ) || (product.description.toLowerCase().includes(this.search.toLowerCase()))
+    })
+    }else {
+      this.resultProducts = this.products;
+    }
+   
+
+    console.log(this.products)
   }
 
 }
