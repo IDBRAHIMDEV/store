@@ -28,8 +28,20 @@
             <em>{{ product?.description }}</em>
           </td>
           <td>{{ product.price | currency }}</td>
-          <td>{{ product.stock | number }}</td>
+          <td>
+              <span class="badge" [ngClass]="{
+                'badge-success': product.stock > 5,
+                'badge-warning': product.stock <= 5 && product.stock > 0,
+                'badge-danger': product.stock == 0
+              }">
+                {{ product.stock | number }}
+              </span> 
+
+          </td>
           <td class="text-right">
+            <button *ngIf="product.stock" class="btn btn-info btn-sm mr-1" (click)="buyProduct(product.id, product.stock)">
+              <i class="fa fa-shopping-cart"></i>
+            </button>
             <a [routerLink]="['/products/edit', product.id]" class="btn btn-warning btn-sm mr-1"><i class="fa fa-pencil"></i></a>
             <button (click)="deleteProduct(product.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
           </td>

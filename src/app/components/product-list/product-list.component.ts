@@ -1,3 +1,4 @@
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './../../services/product.service';
 
@@ -9,7 +10,10 @@ import { ProductService } from './../../services/product.service';
 export class ProductListComponent implements OnInit {
 
   products: any[] = []
-  constructor(private productService: ProductService) { }
+  constructor(
+       private productService: ProductService,
+       private flashMessage: FlashMessagesService
+       ) { }
 
   ngOnInit() {
     this.getAllProducts();
@@ -25,7 +29,26 @@ export class ProductListComponent implements OnInit {
   deleteProduct(id) {
     this.productService.delete(id)
                        .then(res => {
-                         
+                        this.flashMessage.show('This product id Deleted Successfully !', {
+                          cssClass: "alert-info",
+                          timeout: 5000
+                        })
+                       })
+  }
+
+  buyProduct(id, stock) {
+    this.productService.takeProduct(id, stock)
+                       .then(res => {
+                          // this.flashMessage.show('This product is Buy Successfully !', {
+                          //   cssClass: "alert-info",
+                          //   timeout: 5000
+                          // })
+                       })
+                       .catch(err => {
+                        this.flashMessage.show(err.message, {
+                          cssClass: "alert-danger",
+                          timeout: 5000
+                        })
                        })
   }
 

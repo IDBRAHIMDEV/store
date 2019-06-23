@@ -2,6 +2,7 @@ import { Product } from './../../models/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-product-add',
@@ -20,7 +21,8 @@ export class ProductAddComponent implements OnInit {
 
   constructor(
           private productService: ProductService,
-          private router: Router
+          private router: Router,
+          private flashMessage: FlashMessagesService
     ) { }
 
   ngOnInit() {
@@ -35,9 +37,18 @@ export class ProductAddComponent implements OnInit {
     if(form.valid) {
       this.productService.create(this.product)
                        .then(res => {
+                          this.flashMessage.show('This product id added Successfully !', {
+                            cssClass: "alert-info",
+                            timeout: 5000
+                          })
                           this.router.navigate(['/products'])
                        })
-                       .catch()
+                       .catch(err => {
+                        this.flashMessage.show(err.message, {
+                          cssClass: "alert-danger",
+                          timeout: 5000
+                        })
+                       })
     }
     
 

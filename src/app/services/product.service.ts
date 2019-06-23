@@ -41,4 +41,10 @@ export class ProductService {
      return this.productsCollection.doc(id).delete();
    }
 
+   takeProduct(id, stock) {
+     return this.productsCollection.doc(id).update({
+       stock: stock - 1
+     })
+   }
+
 }
