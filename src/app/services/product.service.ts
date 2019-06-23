@@ -47,4 +47,10 @@ export class ProductService {
      })
    }
 
+   toggleActive(product) {
+     return this.productsCollection.doc(product.id).update({
+       active: !product.active
+     })
+   }
+
 }

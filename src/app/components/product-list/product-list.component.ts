@@ -8,7 +8,7 @@ import { ProductService } from './../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
+  somme = 0;
   products: any[] = []
   constructor(
        private productService: ProductService,
@@ -23,6 +23,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getAll().subscribe((res: any[]) => {
         console.log(res)
         this.products = res;
+        this.somePrices();
     })
   }
 
@@ -50,6 +51,19 @@ export class ProductListComponent implements OnInit {
                           timeout: 5000
                         })
                        })
+  }
+
+  toggleActiveProduct(product) {
+    this.productService.toggleActive(product)
+                       .then(res => {
+
+                       }).catch(err => {})
+  }
+
+  somePrices() {
+    this.somme = this.products.reduce((total, product) => {
+      return total + parseFloat(product.price) * parseFloat(product.stock)
+    }, 0);
   }
 
 }

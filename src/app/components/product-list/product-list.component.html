@@ -3,6 +3,9 @@
     <h1>List of Products</h1>
   </div>
   <div class="col-md-6 text-right">
+    
+    <span class="badge mr-4 badge-success upperSome">{{ somme | currency }}</span>
+
     <a routerLink="/products/add" class="btn btn-success btn-sm">
       <i class="fa fa-plus"></i>
     </a>
@@ -24,7 +27,10 @@
       <tbody>
         <tr *ngFor="let product of products">
           <td scope="row">
-            <h4>{{ product.title | uppercase }}</h4>
+
+            <i (click)="toggleActiveProduct(product)" class="fa fa-power-off" [class.active-product]="!product.active"></i>
+
+            {{ product.title | uppercase }}
             <em>{{ product?.description }}</em>
           </td>
           <td>{{ product.price | currency }}</td>
