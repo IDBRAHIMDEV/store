@@ -9,6 +9,7 @@ import { ProductService } from './../../services/product.service';
 })
 export class ProductListComponent implements OnInit {
   
+  list = true;
   search = '';
   somme = 0;
   products: any[] = []
