@@ -62,7 +62,7 @@ export class ProductListComponent implements OnInit {
 
   somePrices() {
     this.somme = this.products.reduce((total, product) => {
-      return total + parseFloat(product.price) * parseFloat(product.stock)
+      return total + (parseFloat(product.price) * parseFloat(product.stock))
     }, 0);
   }
 
